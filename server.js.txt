@@ -1,0 +1,43 @@
+const express = require("express");
+const admin = require("firebase-admin");
+
+// 🔐 Credenciales Firebase
+const serviceAccount = require("./serviceAccountKey.json");
+
+// 🔥 Inicializar Firebase
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://acuario-tesis-default-rtdb.firebaseio.com"
+});
+
+const db = admin.database();
+
+// 🚀 Crear servidor
+const app = express();
+app.use(express.json());
+
+// 🔍 Ruta de prueba
+app.get("/", (req, res) => {
+  res.send("🔥 SERVIDOR FUNCIONANDO 🔥");
+});
+
+// 📥 Recibir datos (Wokwi)
+app.post("/datos", async (req, res) => {
+  try {
+    const data = req.body;
+
+    await db.ref("sensores").set(data);
+
+    console.log("📥 Datos recibidos:", data);
+
+    res.send("OK");
+  } catch (error) {
+    console.error("❌ Error:", error);
+    res.status(500).send("Error");
+  }
+});
+
+// 🚀 Iniciar servidor
+app.listen(3000, () => {
+  console.log("🔥 SERVIDOR ENCENDIDO EN http://localhost:3000");
+});
