@@ -7,12 +7,18 @@ package-lock.json
 .env.local
 .env.production
 
-# 🚨 IMPORTANTE: Firebase (ESTO TE FALTABA)
+# 🔥 Firebase (CRÍTICO - NO subir credenciales)
 serviceAccountKey.json
+firebase/serviceAccountKey.json
+firebase-credentials.json
+Python Test/firebase-credentials.json
 
+# Otros posibles JSON sensibles (opcional)
+*.json
+!package.json
+!package-lock.json
 
-# Credenciales de Firebase
-
+# Llaves y certificados
 *.key
 *.pem
 *.crt
@@ -23,7 +29,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Directorios del sistema
+# Sistema
 .DS_Store
 Thumbs.db
 
@@ -33,5 +39,3 @@ Thumbs.db
 *.swp
 *.swo
 *~
-firebase-credentials.json
-Ptyhon Test/firebase-credentials.json
