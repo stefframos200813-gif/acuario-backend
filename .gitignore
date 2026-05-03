@@ -8,7 +8,7 @@ package-lock.json
 .env.production
 
 # Credenciales de Firebase
-serviceAccountKey.json
+
 *.key
 *.pem
 *.crt
